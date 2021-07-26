@@ -1,0 +1,39 @@
+{
+   "Resources":
+   {
+      "r1":
+	  {
+	    "Type" : "AWS::EC2::Volume",
+		"Properties":
+		{
+		   "Size": "12",
+		   "AvailabilityZone":"ap-south-1a"
+		}
+	  },
+	  "r2":
+	  {
+	    "Type": "AWS::EC2::Instance",
+		"Properties":
+		{
+		   "InstanceType": "t2.micro",
+		   "ImageId": "ami-04ea996e7a3e7ad6b",
+		   "KeyName" :"myaws"
+		}
+	  },
+	  "myeip":
+	  {
+	    "Type" :"AWS::EC2::EIP"
+	  }
+   },
+   "Outputs":
+   {
+      "ec2id":
+	  { 
+	     "Value": {"Ref":"r2"}
+	  },
+	  "ipval":
+	  {
+	    "Value": {"Ref":"myeip"}
+	  }
+   }
+}

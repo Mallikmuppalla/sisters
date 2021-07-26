@@ -1,0 +1,18 @@
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1548388888652",
+    "Statement": [
+        {
+            "Sid": "Stmt1548388887115",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::521937342151:root"
+            },
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::intelliqit29/dev",
+                "arn:aws:s3:::intelliqit29/dev/*"
+            ]
+        }
+    ]
+}

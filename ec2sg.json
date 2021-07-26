@@ -1,0 +1,47 @@
+{
+  "Resources":
+  {
+     "mysg":
+	 {
+	   "Type": "AWS::EC2::SecurityGroup",
+	   "Properties":
+	   {
+	    "GroupDescription" : "feb05",
+		"VpcId":"vpc-f63a1b9e",
+		"SecurityGroupIngress":
+		[
+		   {
+		   "IpProtocol":"tcp",
+		   "FromPort" :"22",
+		   "ToPort" :"22",
+		   "CidrIp" :"0.0.0.0/0"
+		   
+		   },
+		   {
+		   "IpProtocol":"tcp",
+		   "FromPort" :"80",
+		   "ToPort" :"80",
+		   "CidrIp" :"34.7.8.9/32"
+		   
+		   }
+		]
+	   }
+	 },
+	 "myec2":
+	  {
+	     "Type":"AWS::EC2::Instance",
+		 "Properties":
+		 {
+		    "InstanceType": "t2.micro",
+			"ImageId": "ami-0d773a3b7bb2bb1c1",
+			"SecurityGroupIds" :[{"Ref":"mysg"},
+			"sg-0b95d4eb59c5058d9",
+			"sg-0ff745a5c358cc8d7"
+
+]
+		 }
+	  }
+	 
+  }
+  
+}

@@ -1,0 +1,43 @@
+EFS: To allow the file sharing between the servers
+located in different AZs within a region.
+
+Creating EFS :
+1) Goto AWS dashboard
+2) Click on "Storage->EFS"
+3) Click on " Click On Create File System"
+4) click on "Next "
+5)  click on "Next "
+6) Click on "Create File System"
+
+Attaching EFS to EC2 instance:
+================================
+1) Launch ec2 instance.
+2) attache default security group to the instance
+3) Connect to the ec2 instances
+3) install below software (As per the mount instructions)
+   sudo apt-get install nfs-common
+4) Create mount directory
+   mkdir d1
+   
+5) mount the newly create directory to the efs
+sudo mount -t nfs4 -o nfsvers=4.1,
+rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 
+fs-0ecc3077.efs.us-east-2.amazonaws.com:/ d1
+6) reapet the same steps for other instance.
+
+Q) What is difference between EFS and EBS?
+EFS:
+====
+a) EFS is an unlimited storge
+b) We can attach EFS to multiple EC2 instances with in
+a region
+c) It is only for file sharing ,We cannt install softwares.
+EBS:
+===
+a) It is not possible to attach EBs to multiple ec2 
+   instances
+b) We can install OS/Softwares in EBS volumes.   
+
+
+
+

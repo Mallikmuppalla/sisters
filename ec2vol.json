@@ -1,0 +1,43 @@
+{
+   
+   "Resources":
+   {
+      "myec2":
+	  {
+	     "Type":"AWS::EC2::Instance",
+		 "Properties":
+		 {
+		    "InstanceType": "t2.micro",
+			"ImageId": "ami-0d773a3b7bb2bb1c1"
+		 }
+	  },
+	  "vol":
+	  {
+	     "Type" :"AWS::EC2::Volume",
+		 "Properties":
+		 {
+		    "Size": "10",
+			"AvailabilityZone": {"Fn::GetAtt":["myec2","AvailabilityZone"]}
+		 }
+	  },
+	  "ec2vol":
+	  {
+	     "Type": "AWS::EC2::VolumeAttachment",
+		 "Properties":
+		 {
+		   "InstanceId": {"Ref":"myec2"},
+		   "VolumeId": {"Ref":"vol"},
+		   "Device": "/dev/sdp"
+		 }
+	  }
+   },
+   "Outputs":
+   {
+     "publicip":
+	 {
+	   "Value": {"Fn::GetAtt":["myec2","PublicIp"]}
+	 }
+   }
+   
+   
+}

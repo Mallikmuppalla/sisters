@@ -1,0 +1,60 @@
+1) ssh : To login into remote linux instances.
+
+    syntax: ssh username@ipaddr
+2) ssh service config files located in "/etc/ssh"
+3) If you want login into remote linux instance
+   "PasswordAuthentication" parameter must be yes in below
+     file of remote Instance.
+     /etc/ssh/sshd_config
+4) Open above file in vim editer after switching into root user
+     sudo su
+     vim /etc/ssh/sshd_config
+5) Change "PasswordAuthentication" parameter value to "yes" 
+6) save the file. 
+6) After That you need to restart the service.
+    sudo service ssh restart
+
+====================================================
+Login into remote instance without passwd
+
+1) First we need to generate public & private keys
+     
+      ssh-keygen
+2) Public key need to copied into remote server user
+
+      ssh-copy-id username@ipaddr
+3) Once public key is copied we can login into 
+    remote server user without passwd.
+
+Note :
+ 1) Default public & private key file names
+    are id_rsa.pub, id_rsa.
+ 2) Default location of the public & private key files
+      ~/.ssh
+ 3) all public keys are stored in below file.
+     ~/.ssh/authorized_keys
+==================================================
+scp : To copy files into remote linux server.
+    
+syntax : scp file_name username@ipaddr: dest_location
+
+Note : If you have private key we can copy files
+    into remote server without passwd.
+
+syntax: scp -i <private_keyname>file_name 
+        username@ipaddr: dest_location
+=================================================
+service : this command do below things.
+     a) stop the service
+         ex :sudo service apache2 stop	 
+	 b) Start the service
+        ex :sudo service apache2 start
+    c) Restart the service 
+        ex :sudo service apache2 restart
+		
+   
+		
+	 
+      
+ 
+    	 

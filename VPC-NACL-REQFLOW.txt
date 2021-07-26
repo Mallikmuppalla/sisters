@@ -1,0 +1,19 @@
+Instance Request Flow from/to instance:
+----------------------------------------
+S1) AWS instance is accessing google.com
+  a) It is outgoing http request from aws instance
+  b) It is incoming http request to google server.
+Flow:
+AWS instance --> SG(OB -> 80) --> NACL(OB --> 80) --> i/B http(80) req to google server NACL ->i/c http req to google server SG 
+ -->responce will be sent using ephmral port --> O/B ephmral port req to google server NACL --> I/B ephmral port req to AWS NACL
+ --> request will be landed on aws instance.
+
+S2) SSH request from intelliq server to AWS SERVER
+
+  a) It is outgoing ssh request to intelliQ instance
+  b) It is incoming ssh request to aws server.
+
+Flow:
+IntelliQ instance --> SG(OB -> 22) --> NACL(OB --> 22) --> i/B ssh(22) req to AWS server NACL ->i/B SSH req to AWS server SG 
+ -->responce will be sent using ephmral port --> O/B ephmral port req to AWS server NACL --> I/B ephmral port req to INTELLIQ NACL
+ --> request will be landed on IntelliQ instance.

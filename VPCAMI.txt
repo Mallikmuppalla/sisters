@@ -1,0 +1,56 @@
+Creating Custom Ubuntu AMI for VPC Practice:
+============================================
+1) Launch any ubuntu ec2 instance
+2) Login inti Ubuntu ec2 instance
+3) Reset the password of ubuntu user
+
+      sudo passwd ubuntu
+Note : Remember the password	  
+4) Switch to root user
+
+      sudo su
+5) Goto below location
+
+    cd /etc/ssh
+6) open "sshd_config" file and change 
+   "PasswordAuthentication" parameter value to "yes"
+ 
+     vim  sshd_config
+7) Save and quite.
+8) restart ssh service
+
+     service ssh reastart      
+	  
+9) goto "/etc/cloud" location
+    cd 	/etc/cloud 
+10) open "cloud.cfg" file
+    vim cloud.cfg
+11) Change "lock_passwd:" parameter to "False"
+12) Save and quite
+
+13) Exit from ec2 instance
+14) try login ec2 instance without ssh key
+
+     ssh ubuntu@ipaddress
+	 
+15) Goto ec2 dashboard
+16) Select the instance
+17) Click on "Action"-->Image-->Create Image
+18) Give any any name to Image (VpcPract)
+19) click on create image
+========================================
+Launch any ec2 instance based on Above Custom AMI:
+==================================================
+1) Goto Ec2 dashboard
+2) Click on Launch Instance
+3) click "MyAMis"
+4) Select the AMI which you have created 
+5) click on "Review And Launch"
+6) in keypair section select "Proceed without KeyPair"
+7) click on Launch.
+8) try login into ec2 instance
+    
+	ssh ubuntu@ipaddress 	 
+	
+ 	
+      

@@ -1,0 +1,25 @@
+{
+  "Parameters":
+  {
+    "itype":
+	{
+	  "Type" : "String"
+	},
+	"kn":
+	{
+	  "Type" : "AWS::EC2::KeyPair::KeyName"
+	}
+  },
+  "Resources":
+  {
+    "ec2":
+	{
+	  "Type": "AWS::EC2::Instance",
+	  "Properties":
+	  {
+	    "InstanceType": {"Ref":"itype"},
+		"ImageId":"ami-0c5199d385b432989"
+	  }	
+	 } 
+  }
+}

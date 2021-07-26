@@ -1,0 +1,51 @@
+How to install software updates in Private subnets?
+===================================================
+By using NAT GATEWAY we are able to access internet 
+in private subnets:
+
+Steps:
+=====
+1) Create custom VPC i.e. testvpc
+    i.e. 10.0.0.0/16
+2)  Create two subnets ,one is public ,other one as 
+    private
+     a)Public subnet creation
+		i) create subnet 10.0.1.0/24 i.e SN1
+		ii) create new route table i.e RT1
+		iii) create internet gateway and attach it to 
+		"testvpc" VPC
+		iv) edit route table "RT1" and add internet 
+		gateway details
+		v) attach route table RT1 to subnet SN1
+	  
+	  b)Private subnet creation:
+       i) create subnet 10.0.2.0/24 i.e SN2
+		ii) create new route table i.e RT2
+		iii) attach route table RT2 to subnet SN2
+3) Create NAT GATEWAY in Public subnet
+
+    i) Click on NATGATEWAY
+    ii) click on "CREATE NAT GATEWAY"
+    iii) Select public subnet of "testvpc" i.e SN1
+    iv) allocate "Elastic IP address" to NAT GATEWAY.
+           "click on create new EIP"	
+	v) Click on "Create Nat gateway"
+
+4) Attach NAT GATEWAY to private subnet
+   i) goto route table page
+   ii)edit route table "RT2" and add Nat gateway details
+
+5)  Testing:	
+	======
+	i)  Launch one Ec2 instance in "TestVPC" 
+	public subnet i.e SN1
+    ii)	Launch second Ec2 instance in "TestVPC" 
+	private subnet i.e SN2
+	iii)ssh into step1 ec2 instance
+	iv) ssh into step2 ec2 from step1 ec2 instance.
+	     	 
+	v)  run below command
+         sudo apt-get update 	
+========================================================	     
+	
+	

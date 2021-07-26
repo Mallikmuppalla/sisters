@@ -1,0 +1,35 @@
+{
+  "Resources":
+  {
+    "myec2":
+	{
+	 "Type": "AWS::EC2::Instance",
+	 "Properties":
+	 {
+	  "InstanceType": "t2.micro",
+	  "ImageId": "ami-04ea996e7a3e7ad6b",
+	  "KeyName":"myaws"
+	 },
+	 "myvol":
+	 {
+	   "Type": "AWS::EC2::Volume",
+	   "Properties":
+	   {
+	     "Size":"12",
+		"AvailabilityZone": {"Fn::GetAtt":["myec2","AvailabilityZone"]}
+	   },
+	   "volattach":
+	   {
+	    "Type": "AWS::EC2::VolumeAttach",
+		"Properties":
+		{
+		 "InstanceId": {"Ref","myec2"},
+		 "VolumeId": {"Ref","myvol"},
+		 "Device": "/dev/sdg"
+		}
+	   }
+	   
+	 }
+	}
+  }
+}
